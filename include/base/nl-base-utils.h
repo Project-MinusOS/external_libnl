@@ -753,10 +753,7 @@ struct trans_tbl {
 	const char *a;
 };
 
-#define __ADD(id, name)             \
-	{                           \
-		.i = id, .a = #name \
-	}
+#define __ADD(id, name) { .i = id, .a = #name }
 
 #define BUG()                                                                \
 	do {                                                                 \
@@ -815,8 +812,8 @@ static inline void nl_write_unlock(pthread_rwlock_t *lock)
 }
 
 #else
-#define NL_LOCK(NAME) int __unused_lock_##NAME __attribute__((unused))
-#define NL_RW_LOCK(NAME) int __unused_lock_##NAME __attribute__((unused))
+#define NL_LOCK(NAME) int __unused_lock_##NAME _nl_unused
+#define NL_RW_LOCK(NAME) int __unused_lock_##NAME _nl_unused
 
 #define nl_lock(LOCK) \
 	do {          \
